@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
           <a routerLink="/projets" routerLinkActive="active">Projets</a>
           <a routerLink="/employes" routerLinkActive="active">Employés</a>
           <a routerLink="/taches" routerLinkActive="active">Tâches</a>
+          <a routerLink="/ressources" routerLinkActive="active">Ressources</a>
           <button (click)="auth.logout()" class="btn-logout">Déconnexion</button>
         </div>
       </div>

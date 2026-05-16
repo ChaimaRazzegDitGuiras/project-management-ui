@@ -6,6 +6,8 @@ import { EmployeListComponent } from './components/employe-list/employe-list.com
 import { EmployeFormComponent } from './components/employe-form/employe-form.component';
 import { TacheListComponent } from './components/tache-list/tache-list.component';
 import { TacheFormComponent } from './components/tache-form/tache-form.component';
+import { RessourceListComponent } from './components/ressource-list/ressource-list.component';
+import { RessourceFormComponent } from './components/ressource-form/ressource-form.component';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
@@ -53,6 +55,21 @@ export const routes: Routes = [
   { 
     path: 'taches/edit/:id', 
     component: TacheFormComponent,
+    canActivate: [authGuard]
+  },
+  { 
+    path: 'ressources', 
+    component: RessourceListComponent,
+    canActivate: [authGuard]
+  },
+  { 
+    path: 'ressources/nouveau', 
+    component: RessourceFormComponent,
+    canActivate: [authGuard]
+  },
+  { 
+    path: 'ressources/edit/:id', 
+    component: RessourceFormComponent,
     canActivate: [authGuard]
   },
   { path: '', redirectTo: 'projets', pathMatch: 'full' }

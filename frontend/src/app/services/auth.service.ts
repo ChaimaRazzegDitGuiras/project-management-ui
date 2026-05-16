@@ -14,9 +14,9 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {
     const token = localStorage.getItem('token');
+    const role = localStorage.getItem('user_role');
     if (token) {
-      // In a real app, we would decode the JWT to get user info
-      this.currentUser.set({ token });
+      this.currentUser.set({ token, role });
     }
   }
 
@@ -24,6 +24,7 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap(res => {
         localStorage.setItem('token', res.token);
+        localStorage.setItem('user_role', res.role);
         this.currentUser.set(res);
       })
     );
@@ -31,6 +32,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user_role');
     this.currentUser.set(null);
     this.router.navigate(['/login']);
   }
@@ -41,5 +43,15 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem('token');
+  }
+
+  isAdmin(): boolean {
+    const user = this.currentUser();
+    return user && user.role === 'ADMIN';
+  }
+
+  getUserRole(): string | null {
+    const user = this.currentUser();
+    return user ? user.role : null;
   }
 }

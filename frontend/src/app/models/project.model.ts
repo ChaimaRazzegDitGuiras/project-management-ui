@@ -49,3 +49,9 @@ export enum PrioriteTache {
   CRITIQUE = 'CRITIQUE',
   URGENTE = 'URGENTE'
 }
+
+export interface Ressource {
+  id?: number;
+  nom: string;
+  type: string;
+}
